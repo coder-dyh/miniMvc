@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="minispringmvclibtest:war">
+    <output-path>$PROJECT_DIR$/minispringmvclibtest/target</output-path>
+    <root id="archive" name="miniSpringMvcLibTest.war">
+      <element id="artifact" artifact-name="minispringmvclibtest:war exploded" />
+    </root>
+  </artifact>
+</component>

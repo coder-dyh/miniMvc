@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/minimvc.iml" filepath="$PROJECT_DIR$/minimvc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/minispringmvclib/minispringmvclib.iml" filepath="$PROJECT_DIR$/minispringmvclib/minispringmvclib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/minispringmvclibtest/minispringmvclibtest.iml" filepath="$PROJECT_DIR$/minispringmvclibtest/minispringmvclibtest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ministrut2libtest/ministrut2libtest.iml" filepath="$PROJECT_DIR$/ministrut2libtest/ministrut2libtest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ministruts2lib/ministruts2lib.iml" filepath="$PROJECT_DIR$/ministruts2lib/ministruts2lib.iml" />
+    </modules>
+  </component>
+</project>
