@@ -77,7 +77,7 @@ public class FrameworkServlet extends HttpServlet {
         ServletContext servletContext = config.getServletContext();
         defaultServletName = servletContext
                 .getInitParameter("defaultServletName");
-        if (defaultServletName != null && !"".equals(defaultServletName)) {
+        if (defaultServletName == null || "".equals(defaultServletName)) {
             if (servletContext.getNamedDispatcher(COMMON_DEFAULT_SERVLET_NAME) != null) {
                 defaultServletName = COMMON_DEFAULT_SERVLET_NAME;
             } else {

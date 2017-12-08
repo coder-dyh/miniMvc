@@ -18,12 +18,15 @@ public class ScopeProxyContext {
     private Map<String,Object> scopeMap;
 
     public ScopeProxyContext(String scopeName){
-        if(scopeName.equals(FrameworkServlet.REQUEST_MAP))
+        if(scopeName.equals(FrameworkServlet.REQUEST_MAP)) {
             handler = new RequestMapHandler(new HashMap<String, Object>());
-        if(scopeName.equals(FrameworkServlet.SESSION_MAP))
+        }
+        if(scopeName.equals(FrameworkServlet.SESSION_MAP)) {
             handler = new SessionMapHandler(new HashMap<String, Object>());
-        if(scopeName.equals(FrameworkServlet.APPLICATION_MAP))
+        }
+        if(scopeName.equals(FrameworkServlet.APPLICATION_MAP)) {
             handler = new ApplicationMapHandler(new HashMap<String, Object>());
+        }
     }
 
     /**

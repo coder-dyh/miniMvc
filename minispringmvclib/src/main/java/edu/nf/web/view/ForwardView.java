@@ -16,6 +16,7 @@ public class ForwardView extends ViewResult {
         this.url = url;
     }
 
+    @Override
     protected void execute() throws IOException, ServletException {
         if (url != null) {
             getRequest().getRequestDispatcher("/" + url.trim()).forward(getRequest(),

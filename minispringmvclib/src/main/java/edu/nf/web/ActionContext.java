@@ -31,9 +31,11 @@ public class ActionContext {
      * @return
      */
     public static ActionContext getContext() {
-        if (localContext.get() == null)
+        if (localContext.get() == null) {
             // 如果当前线程上没有绑定ActionContext,则创建一个并绑定当前线程
             localContext.set(new ActionContext());
+        }
+
         // 返回当前线程的ActionContext对象
         return localContext.get();
     }

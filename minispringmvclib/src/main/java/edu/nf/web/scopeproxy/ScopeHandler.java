@@ -19,9 +19,10 @@ public abstract class ScopeHandler implements InvocationHandler {
 		return (HttpServletRequest) ActionContext.getContext().get(
 				FrameworkServlet.REQUEST);
 	}
-	
+	@Override
 	public Object invoke(Object proxy, Method method, Object[] args)
 			throws Throwable {
+
 		if ("put".equals(method.getName())) {
 			setAttribute(args[0].toString(), args[1]);
 		} else if ("get".equals(method.getName())) {

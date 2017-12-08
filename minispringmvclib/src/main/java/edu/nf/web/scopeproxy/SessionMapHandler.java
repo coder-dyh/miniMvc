@@ -9,14 +9,17 @@ public class SessionMapHandler extends ScopeHandler {
 		super(target);
 	}
 
+	@Override
 	void setAttribute(String key, Object value) {
 		getLocalRequest().getSession().setAttribute(key, value);
 	}
 
+	@Override
 	Object getAttribute(String key) {
 		return getLocalRequest().getSession().getAttribute(key);
 	}
 
+	@Override
 	void removeAttribute(String key) {
 		getLocalRequest().getSession().removeAttribute(key);
 	}
