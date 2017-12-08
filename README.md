@@ -9,7 +9,7 @@
    项目说明：
    ministrutslib，是一个库项目
    ministrutsweb是一个用来测试ministrutslib的web项目
-   
+
 
 #整个流程如下：
 ##1.StrutsPrepareAndExecuteFilter是一个Servlet过滤器
@@ -33,7 +33,7 @@
         依次调用拦截器
         拦截器无返回值就调用Action类的方法。
         最终返回一个字符串
-        
+
 ##3.ActionContext
     创建ActionContext实例时：
         实例化一个Map<String,Object>的上下文对象（context）
@@ -42,7 +42,7 @@
         把Action对象本身放入到ValueStack的栈顶
         把ValueStack对象通过request.setAttribute方法放入到请求作用域中
         最后把值栈对象放入到context对象中
-        
+
 ##4.ParametersInterceptor
     执行intercept方法时（此方法有参数类型为ActionInvocation）：
         利用ActionInvocation的getActionContext方法得到ActionContext对象
