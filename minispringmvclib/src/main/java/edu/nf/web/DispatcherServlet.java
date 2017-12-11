@@ -1,5 +1,8 @@
 package edu.nf.web;
 
+import edu.nf.web.map.ApplicationMap;
+import edu.nf.web.map.RequestMap;
+import edu.nf.web.map.SessionMap;
 import edu.nf.web.view.DefaultViewResult;
 
 import javax.servlet.ServletConfig;
@@ -75,14 +78,11 @@ public class DispatcherServlet extends FrameworkServlet {
         // 将response对象放入contextMap中
         contextMap.put(RESPONSE, response);
         // 构建HttpServletRequest作用域代理,放入contextMap中
-        contextMap.put(REQUEST_MAP,
-                new ScopeProxyContext(REQUEST_MAP).createScopeProxyMap());
+        contextMap.put(REQUEST_MAP, new RequestMap(request));
         // 构建HttpSession作用域代理,放入contextMap中
-        contextMap.put(SESSION_MAP,
-                new ScopeProxyContext(SESSION_MAP).createScopeProxyMap());
+        contextMap.put(SESSION_MAP, new SessionMap(request));
         // 构建ServletContext上下文作用域代理,放入contextMap中
-        contextMap.put(APPLICATION_MAP,
-                new ScopeProxyContext(APPLICATION_MAP).createScopeProxyMap());
+        contextMap.put(APPLICATION_MAP, new ApplicationMap(request));
     }
 
     /**

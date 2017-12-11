@@ -3,6 +3,7 @@ package edu.nf.web;
 import edu.nf.web.convert.ConvertHandlerChain;
 
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Parameter;
 
 /**
  * 请求回调处理器
@@ -34,13 +35,13 @@ public class HandlerInvoker {
      */
     private void convertParams(ActionMapper mapper){
         ActionDefinition definition = mapper.getDefinition();
-        Object[] params = new Object[definition.getParamInfos().size()];
+        Object[] params = new Object[definition.getControllerMethod().getParameterCount()];
         for (int i = 0; i < params.length; i++) {
-            ParamInfo paramInfo = definition.getParamInfos().get(i);
+            Parameter paramInfo = definition.getControllerMethod().getParameters()[i];
             params[i] = new ConvertHandlerChain().execute(paramInfo);
             // 如果映射参数不成功,且方法参数类型是基本类型,则抛出异常信息
-            if (params[i] == null && paramInfo.getParamType().isPrimitive()) {
-                throw new RuntimeException("Optional " + paramInfo.getParamType() + " parameter " + paramInfo.getParamName() +
+            if (params[i] == null && paramInfo.getType().isPrimitive()) {
+                throw new RuntimeException("Optional " + paramInfo.getType() + " parameter " + paramInfo.getName() +
                         " is present but cannot be translated into a null value due to being declared as a primitive type. ");
             }
         }

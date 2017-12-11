@@ -75,6 +75,7 @@ public class ActionContext {
         return contextMap.get(key);
     }
 
+    // -------------Servlet API-------------
     /**
      * 获取资源绝对路径
      *
@@ -86,7 +87,6 @@ public class ActionContext {
         return request.getServletContext().getRealPath(arg0);
     }
 
-    // -------------Servlet API-------------
     /**
      * 获取上下文路径
      * @return

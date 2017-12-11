@@ -1,8 +1,8 @@
 package edu.nf.web.convert;
 
-import edu.nf.web.ParamInfo;
 import edu.nf.web.ParamsConvertHandler;
 
+import java.lang.reflect.Parameter;
 import java.util.Iterator;
 import java.util.ServiceLoader;
 
@@ -14,10 +14,10 @@ public class ConvertHandlerChain {
         iterator = ServiceLoader.load(ParamsConvertHandler.class).iterator();
     }
 
-    public Object execute(ParamInfo paramInfo){
+    public Object execute(Parameter parameter){
         Object value = null;
         if(iterator.hasNext()){
-            value = iterator.next().handle(paramInfo, this);
+            value = iterator.next().handle(parameter, this);
         }
         return value;
     }

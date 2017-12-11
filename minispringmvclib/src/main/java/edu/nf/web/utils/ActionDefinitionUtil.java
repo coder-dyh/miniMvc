@@ -2,12 +2,9 @@ package edu.nf.web.utils;
 
 import edu.nf.web.ActionDefinition;
 import edu.nf.web.annotation.RequestMapping;
-import edu.nf.web.ParamInfo;
 
 import javax.servlet.ServletException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,26 +58,9 @@ public class ActionDefinitionUtil {
      * 解析请求方法，构建ActionMapper
      */
     private static ActionDefinition resolveMethod(Method method){
-        ActionDefinition actionMapper = new ActionDefinition();
-        actionMapper.setControllerMethod(method);
-        actionMapper.setControllerClass(method.getDeclaringClass());
-        actionMapper.setParamInfos(resolveMethodParams(method.getParameters()));
-        return actionMapper;
-    }
-
-    /**
-     * 解析请求方法的参数信息, 构建ParamInfo实例
-     * @param params
-     * @return
-     */
-    private static List<ParamInfo> resolveMethodParams(Parameter[] params){
-        List<ParamInfo> paramInfos = new ArrayList<>();
-        for (Parameter param : params) {
-            ParamInfo paramInfo = new ParamInfo();
-            paramInfo.setParamName(param.getName());
-            paramInfo.setParamType(param.getType());
-            paramInfos.add(paramInfo);
-        }
-        return paramInfos;
+        ActionDefinition actionDefinition = new ActionDefinition();
+        actionDefinition.setControllerMethod(method);
+        actionDefinition.setControllerClass(method.getDeclaringClass());
+        return actionDefinition;
     }
 }
