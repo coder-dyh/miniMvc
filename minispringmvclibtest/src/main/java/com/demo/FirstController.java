@@ -1,10 +1,10 @@
 package com.demo;
 
-import edu.nf.web.ActionContext;
-import edu.nf.web.FrameworkServlet;
-import edu.nf.web.ViewResult;
-import edu.nf.web.annotation.RequestMapping;
-import edu.nf.web.view.ForwardView;
+import edu.web.ActionContext;
+import edu.web.FrameworkServlet;
+import edu.web.ViewResult;
+import edu.web.annotation.RequestMapping;
+import edu.web.view.ForwardView;
 
 import javax.servlet.http.HttpServletRequest;
 

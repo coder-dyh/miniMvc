@@ -6,7 +6,7 @@
 
     <servlet>
         <servlet-name>miniSpringMvc</servlet-name>
-        <servlet-class>edu.nf.web.DispatcherServlet</servlet-class>
+        <servlet-class>edu.web.DispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
