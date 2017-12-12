@@ -39,7 +39,7 @@ public class DispatcherServlet extends FrameworkServlet {
         // 初始化ActionContext
         initActionContext(request, response);
         // 请求映射,找到匹配的Action描述,返回ActionMapping对象
-        ActionMapper mapper = handlerMapping.handler();
+        ActionMapper mapper = handlerMapping.handle();
         // 如果mapper为null，表示没有匹配的Action描述定义来处理请求,则当前请求交给默认servlet处理
         if(mapper == null){
             forwardDefaultServlet(request, response);

@@ -264,17 +264,17 @@ HTTP请求数据主要来源于以下几个地方
 
 ## 3.1 ministruts2
 
-### 3.1.1 cj：项目简要说明
+### 3.1.1 项目简要说明
 
   目的：  此mini struts库，是对struts2 的一个极度简化
-        仅仅只是做教学用途
+        仅仅只是学习用途
    项目说明：
    ministrutslib，是一个库项目
    ministrutsweb是一个用来测试ministrutslib的web项目
 
 ### 3.1.2 整个流程如下：
 
-####  StrutsPrepareAndExecuteFilter是一个Servlet过滤器
+####   StrutsPrepareAndExecuteFilter
 
     init方法：读取classpath下的struts.xml文件
         得到所有的拦截器配置
@@ -322,9 +322,115 @@ HTTP请求数据主要来源于以下几个地方
 
 
 
+### 3.2.1 项目简要说明
+
+  此mini spring mvc库，是对spring mvc 的一个极度简化
+
+```
+    仅仅只是学习用途
+```
+
+   项目说明：
+   minispringmvclib，是一个库项目
+   minispringmvclibtest是一个用来测试minispringmvclib的web项目
+
+### 3.2.2 整个流程如下：
+
+#### DispatchServlet
+
+DispatchServlet是一个Servlet，继承了FrameworkServlet类,是一个总控器。
+
+```
+init方法：
+	frameworkServlet.initDefaultServlet()初始化默认Servlet，主要用来处理静态资源	
+    frameworkServlet.initActionDefinition() 找到并解析出所有的处理者
+    initHandlerMapping()
+    initHandlerInvoker()
+ service方法：
+    initActionContext():用来初始化ActionContext对象，并处理三个作用对象的Attribute。
+    handlerMapping.handle():找出匹配的处理者，并解析成ActionMapper对象
+   handlerInvoker.invoke(mapper):执行处理者的处理方法，返回的可能是ViewResult或普通对象。
+   response(viewObject):viewObject是普通对象，转换为默认ViewResult，最后执行viewResult.execute()
+   destroyActionContext():清理本次请求创建的ActionContext对象（从ThreadLocal中移除）
+```
+
+#### ActionContext
+
+是一个用来包装Web API的类型，并便利化及隐藏对Web API的操作。每次请求，都会创建一个，要求是线程安全的。
+
+```
+创建ActionContext实例
+    调用ActionContext.getContext()方法：从ThreadLocal中取，取不到，创建一个。取到，			直接返回。
+    常用Web API的封装。
+```
+
+
+
+#### HandlerMapping
+
+主要的作用是依据此次请求的URL信息，找到对应的ActionDefinition，并解析为ActionMapper对象
+
+整个过程都是在handle方法中完成的。
+
+```
+UrlPatternUtil.getUrlPattern(request) 解析当前请求的url信息
+getActionDefinition(request, urlPattern) 找出匹配的ActionDefinition
+实例化ActionMapper对象
+设置mapper对象的actionDefinition信息
+```
+
+
+
+#### ActionMapper
+
+ActionMapper对象可以认为是ActionDefinition的运行时（调用时）表示。以便为Action的执行做铺垫。
+
+```java
+public class ActionMapper {
+    private ActionDefinition definition;
+    private Object target;
+    private Object[] params;
+}
+```
+
+#### HandlerInvoker
+
+主要用来执行Action类的方法。通过调用invoke方法来完成
+
+```java
+ Object invoke(ActionMapper mapper) {
+        newActionInstance(mapper);//实例化Action类型，mapper参数中有ActionDefinition信息
+        convertParams(mapper);//进行Action方法的参数绑定工作
+        return invokeMethod(mapper);//调用方法
+    }
+```
+
+
+
+#### ViewResult
+
+ViewResult类型是对视图处理的一个封装。依据请求处理者（Action类型）的方法返回类型的不同执行对应的视图呈现处理。ViewResult类型是个抽象类，里面只有execute方法，比如下面是其中一个子类
+
+```java
+public class ForwardView extends ViewResult {
+
+    private String url;
+
+    public ForwardView(String url) {
+        this.url = url;
+    }
+
+    @Override
+    protected void execute() throws IOException, ServletException {
+        if (url != null) {
+            getRequest().getRequestDispatcher("/" + url.trim()).forward(getRequest(),
+                    getResponse());
+        }
+    }
+}
+```
+
+
+
 # 参考资料
-
-[java web  MVC](https://www.cnblogs.com/pwc1996/p/4839178.html)
-
-[mvc架构模式](http://www.360doc.com/content/11/0830/14/7532286_144483363.shtml)
 

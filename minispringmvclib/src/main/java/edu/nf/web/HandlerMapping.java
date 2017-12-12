@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class HandlerMapping {
 
-    ActionMapper handler(){
+    ActionMapper handle(){
         ActionMapper mapper = null;
         HttpServletRequest request = (HttpServletRequest) ActionContext
                 .getContext().get(FrameworkServlet.REQUEST);
