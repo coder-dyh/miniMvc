@@ -51,7 +51,7 @@ public class FrameworkServlet extends HttpServlet {
      */
     String defaultServletName;
 
-    final static String ACTION_DEFINITION = "edu.nf.web.actionMapper";
+    final static String ACTION_DEFINITION = "edu.web.actionMapper";
 
     /**
      * 所有请求控制器映射描述集合
